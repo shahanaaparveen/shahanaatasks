@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tasks-backend
+    env: node
+    plan: free
+    branch: master
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        from: env
+      - key: PORT
+        value: "4000"
