@@ -5,6 +5,16 @@ const router = Router();
 
 const todayStr = () => new Date().toISOString().slice(0, 10);
 
+// GET /tasks
+router.get('/', async (req, res) => {
+  try {
+    const tasks = await Task.find().sort({ order: 1 });
+    res.json(tasks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // POST /tasks
 router.post('/', async (req, res) => {
   try {
